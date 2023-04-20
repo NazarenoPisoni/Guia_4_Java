@@ -5,23 +5,25 @@ public class Pelicula {
     private String fecha;
     private String duracion;
     private Audiencia audiencia;
+    private Genero genero;
     private String pais;
     private String descripcion;
-    private static int cantAlquileres = 0;
+    Integer stock;
 
 
     //region Constructores
     public Pelicula() {
     }
 
-    public Pelicula(String titulo, String fecha, String duracion, Audiencia audiencia, String pais, String descripcion) {
+    public Pelicula(String titulo, String fecha, String duracion, Audiencia audiencia, Genero genero, String pais, String descripcion, Integer stock) {
         this.titulo = titulo;
         this.fecha = fecha;
         this.duracion = duracion;
         this.audiencia = audiencia;
+        this.genero = genero;
         this.pais = pais;
         this.descripcion = descripcion;
-        cantAlquileres++;
+        this.stock = stock;
     }
     //endregion
 
@@ -74,25 +76,26 @@ public class Pelicula {
         this.descripcion = descripcion;
     }
 
-    public static int getCantAlquileres() {
-        return cantAlquileres;
+    public Integer getStock() {
+        return stock;
     }
 
-    public static void setCantAlquileres(int cantAlquileres) {
-        Pelicula.cantAlquileres = cantAlquileres;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
     //endregion
 
     @Override
     public String toString() {
         return "Pelicula{" +
-                "titulo='" + titulo + '\'' +
-                ", fecha='" + fecha + '\'' +
-                ", duracion='" + duracion + '\'' +
-                ", audiencia=" + audiencia +
-                ", pais='" + pais + '\'' +
-                ", descripcion='" + descripcion + '\'' +
+                "Título='" + titulo + '\'' +
+                ", Fecha='" + fecha + '\'' +
+                ", Duración='" + duracion + '\'' +
+                ", Audiencia=" + audiencia +
+                ", País='" + pais + '\'' +
+                ", Descripción='" + descripcion + '\'' +
                 '}';
     }
+
 
 }
