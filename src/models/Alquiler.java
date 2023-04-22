@@ -1,25 +1,27 @@
 package models;
+import java.time.LocalDate;
 
 public class Alquiler {
 
     private Integer id;
     private Cliente cliente;
     private Pelicula pelicula;
-    private String fechaRetiro; //Hacer con LocalDate
-    private String fechaDevolucion; //Hacer con LocalDate
+    private LocalDate fechaRetiro;
+    private LocalDate fechaDevolucion;
     private static int cantAlquileres = 0;
     private boolean devuelto;
 
     public Alquiler() {
     }
 
-    public Alquiler(Cliente cliente, Pelicula pelicula, String fechaRetiro, String fechaDevolucion) {
+    public Alquiler(Cliente cliente, Pelicula pelicula, LocalDate fechaDevolucion) {
         this.cliente = cliente;
         this.pelicula = pelicula;
-        this.id = cantAlquileres++;
-        this.fechaRetiro = fechaRetiro;
+        this.fechaRetiro = LocalDate.now();
         this.fechaDevolucion = fechaDevolucion;
         this.devuelto = false;
+        this.id = cantAlquileres;
+        cantAlquileres++;
     }
 
     public Integer getId() {
@@ -30,38 +32,51 @@ public class Alquiler {
         this.id = id;
     }
 
-    public String getFechaRetiro() {
+    public LocalDate getFechaRetiro() {
         return fechaRetiro;
     }
 
-    public void setFechaRetiro(String fechaRetiro) {
+    public void setFechaRetiro(LocalDate fechaRetiro) {
         this.fechaRetiro = fechaRetiro;
     }
 
-    public String getFechaDevolucion() {
+    public LocalDate getFechaDevolucion() {
         return fechaDevolucion;
     }
-
-    public void setFechaDevolucion(String fechaDevolucion) {
-        this.fechaDevolucion = fechaDevolucion;
+    public boolean isDevuelto() {
+        return devuelto;
     }
 
-    public static int getCantAlquileres() {
-        return cantAlquileres;
+    public void setDevuelto(boolean devuelto) {
+        this.devuelto = devuelto;
+    }
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public static void setCantAlquileres(int cantAlquileres) {
-        Alquiler.cantAlquileres = cantAlquileres;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    public Pelicula getPelicula() {
+        return pelicula;
     }
 
+    public void setPelicula(Pelicula pelicula) {
+        this.pelicula = pelicula;
+    }
     @Override
     public String toString() {
         return "Alquiler{" +
                 "Id=" + id +
-                ", Cliente=" + cliente.toString() +
-                ", Película=" + pelicula.toString() +
+                ", Cliente=" + cliente.getNombre() +
+                ", Película=" + pelicula.getTitulo() +
                 ", FechaRetiro='" + fechaRetiro + '\'' +
                 ", FechaDevolucion='" + fechaDevolucion + '\'' +
+                ", Devuelta='" + devuelto + '\'' +
+                ", ID='" + id + '\'' +
                 '}';
     }
+
+
+
 }

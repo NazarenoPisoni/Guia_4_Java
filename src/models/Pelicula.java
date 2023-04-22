@@ -2,32 +2,31 @@ package models;
 
 public class Pelicula {
     private String titulo;
-    private String fecha;
+    private String fechaLanzamiento;
     private String duracion;
-    private Audiencia audiencia;
-    private Genero genero;
+    private String audiencia;
+    private String genero;
     private String pais;
     private String descripcion;
-    Integer stock;
+    private int stock;
+    private int alquileres;
 
 
-    //region Constructores
     public Pelicula() {
     }
 
-    public Pelicula(String titulo, String fecha, String duracion, Audiencia audiencia, Genero genero, String pais, String descripcion, Integer stock) {
+    public Pelicula(String titulo, String fechaLanzamiento, String duracion, String audiencia, String genero, String pais, String descripcion, int stock) {
         this.titulo = titulo;
-        this.fecha = fecha;
+        this.fechaLanzamiento = fechaLanzamiento;
         this.duracion = duracion;
         this.audiencia = audiencia;
         this.genero = genero;
         this.pais = pais;
         this.descripcion = descripcion;
         this.stock = stock;
+        this.alquileres = 0;
     }
-    //endregion
 
-    //region Getters and Setters
     public String getTitulo() {
         return titulo;
     }
@@ -36,12 +35,12 @@ public class Pelicula {
         this.titulo = titulo;
     }
 
-    public String getFecha() {
-        return fecha;
+    public String getFechaLanzamiento() {
+        return fechaLanzamiento;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setFechaLanzamiento(String fechaLanzamiento) {
+        this.fechaLanzamiento = fechaLanzamiento;
     }
 
     public String getDuracion() {
@@ -52,12 +51,20 @@ public class Pelicula {
         this.duracion = duracion;
     }
 
-    public Audiencia getAudiencia() {
+    public String getAudiencia() {
         return audiencia;
     }
 
-    public void setAudiencia(Audiencia audiencia) {
+    public void setAudiencia(String audiencia) {
         this.audiencia = audiencia;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     public String getPais() {
@@ -76,26 +83,47 @@ public class Pelicula {
         this.descripcion = descripcion;
     }
 
-    public Integer getStock() {
+    public int getStock() {
         return stock;
     }
 
-    public void setStock(Integer stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
-    //endregion
+
+    public int getAlquileres() {
+        return alquileres;
+    }
+
+    public void setAlquileres(int alquileres) {
+        this.alquileres = alquileres;
+    }
 
     @Override
     public String toString() {
         return "Pelicula{" +
-                "Título='" + titulo + '\'' +
-                ", Fecha='" + fecha + '\'' +
-                ", Duración='" + duracion + '\'' +
-                ", Audiencia=" + audiencia +
-                ", País='" + pais + '\'' +
-                ", Descripción='" + descripcion + '\'' +
+                "titulo='" + titulo + '\'' +
+                ", fechaLanzamiento='" + fechaLanzamiento + '\'' +
+                ", duracion='" + duracion + '\'' +
+                ", audiencia='" + audiencia + '\'' +
+                ", genero='" + genero + '\'' +
+                ", pais='" + pais + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", stock=" + stock +
+                ", alquileres=" + alquileres +
                 '}';
     }
+    public boolean alquilarPelicula() {
+        boolean flag = false;
 
-
+        if (stock > 0) {
+            stock--;
+            alquileres++;
+            flag = true;
+        }
+        return flag;
+    }
+    public void devolverPelicula(){
+        stock++;
+    }
 }
