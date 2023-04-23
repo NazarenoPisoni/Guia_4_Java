@@ -1,6 +1,7 @@
 package models;
+import java.time.LocalDate;
 
-public class Pelicula {
+public class Pelicula implements Comparable<Pelicula>{
     private String titulo;
     private String fechaLanzamiento;
     private String duracion;
@@ -102,15 +103,15 @@ public class Pelicula {
     @Override
     public String toString() {
         return "Pelicula{" +
-                "titulo='" + titulo + '\'' +
-                ", fechaLanzamiento='" + fechaLanzamiento + '\'' +
-                ", duracion='" + duracion + '\'' +
-                ", audiencia='" + audiencia + '\'' +
-                ", genero='" + genero + '\'' +
-                ", pais='" + pais + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", stock=" + stock +
-                ", alquileres=" + alquileres +
+                "Título='" + titulo + '\'' +
+                ", Fecha de Lanzamiento='" + fechaLanzamiento + '\'' +
+                ", Duración='" + duracion + '\'' +
+                ", Audiencia='" + audiencia + '\'' +
+                ", Genero='" + genero + '\'' +
+                ", País='" + pais + '\'' +
+                ", Descripción='" + descripcion + '\'' +
+                ", Stock=" + stock +
+                ", Alquileres=" + alquileres +
                 '}';
     }
     public boolean alquilarPelicula() {
@@ -125,5 +126,17 @@ public class Pelicula {
     }
     public void devolverPelicula(){
         stock++;
+    }
+
+    @Override
+    public int compareTo(Pelicula peli) {
+        int i;
+        if(this.alquileres<peli.getAlquileres() || peli==null)
+            i=1;
+        else if (this.alquileres==peli.getAlquileres())
+            i=0;
+        else
+            i=-1;
+        return i;
     }
 }
